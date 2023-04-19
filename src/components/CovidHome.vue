@@ -14,5 +14,5 @@ export default {
     CovidHeader,
     CovidBody,
   },
-}
+};
 </script>

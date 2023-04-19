@@ -45,24 +45,24 @@ export default {
       const selectedCountryID = event.target.value;
       if (selectedCountryID === "0") {
         this.title = "Global";
-        this.$emit("Country", this.title);
       } else {
         const selectedCountry = this.countries.find(
           (country) => country.ID === selectedCountryID
         );
-        this.title = "";
-        this.$emit("Country", selectedCountry.Country);
         // this.title = selectedCountry.Country;
+        this.title = "";
+        this.$emit("country", selectedCountry);
       }
     },
   },
   async created() {
     const data = await this.fetchCovidData();
-    console.log(data);
+    // console.log(data);
 
-    this.dataDate = data.dataDate;
-    this.$emit('UpdatedDate',this.dataDate);
-    // this.stats = data.Global;
+    const Updateddate = data.Date;
+    this.$emit("updatedDate", Updateddate);
+    this.stats = data.Global;
+    this.$emit("country", this.stats);
     this.countries = data.Countries;
     this.loading = false;
   },

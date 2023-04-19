@@ -1,9 +1,12 @@
 <template>
   <div class="bg-[#ffebcd] h-full md:h-screen">
-    <CountrySelector @Country="CountryName" @UpdatedDate="newDate" />
-    <DataBoxes />
-    <div class="flex justify-center align-middle m-10 text-xl md:text-3xl">
-      Updated: {{ Date }}
+    <CountrySelector @updatedDate="newDate" @country="countryData" />
+    <DataBoxes :data="Data" />
+    <div class="flex flex-col items-center m-10 text-xl md:text-3xl gap-4">
+      <div>Updated:</div>
+      <div>
+        {{ this.Date }}
+      </div>
     </div>
   </div>
 </template>
@@ -21,11 +24,22 @@ export default {
   data() {
     return {
       Date: "",
+      Data: "",
     };
   },
   methods: {
     newDate(data) {
-      this.Date = data;
+      const date = new Date(data);
+      const updatedDate = date.toLocaleDateString("en-CA", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+      });
+      this.Date = updatedDate;
+    },
+    countryData(data) {
+      this.Data = data;
     },
   },
 };
