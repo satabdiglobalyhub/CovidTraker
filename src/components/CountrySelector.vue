@@ -6,6 +6,7 @@
         <select
           @change="fetchCountry"
           class="bg-gray-400 border-2 rounded text-center w-11/12 flex justify-center p-1 m-2.5"
+          v-model="selected"
         >
           <option value="0">Select a country</option>
           <option v-for="country in countries" :value="country.ID">
@@ -13,7 +14,7 @@
           </option>
         </select>
         <div
-          class="mt-10 flex justify-center text-4xl underline underline-offset-2 md:text-6xl"
+          class="mt-10 flex justify-center text-4xl underline underline-offset-2 md:text-6xl cursor-pointer"
         >
           {{ title }}
         </div>
@@ -33,6 +34,7 @@ export default {
       dataDate: "",
       stats: {},
       countries: [],
+      selected: "0",
     };
   },
   methods: {
@@ -42,9 +44,11 @@ export default {
       return data;
     },
     fetchCountry(event) {
-      const selectedCountryID = event.target.value;
+      const selectedCountryID = this.selected;
       if (selectedCountryID === "0") {
         this.title = "Global";
+
+        this.$emit("country", this.stats);
       } else {
         const selectedCountry = this.countries.find(
           (country) => country.ID === selectedCountryID

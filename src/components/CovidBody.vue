@@ -2,9 +2,10 @@
   <div class="bg-[#ffebcd] h-full md:h-screen">
     <CountrySelector @updatedDate="newDate" @country="countryData" />
     <DataBoxes :data="Data" />
+    
     <div class="flex flex-col items-center m-10 text-xl md:text-3xl gap-4">
-      <div>Updated:</div>
-      <div>
+      <div class="cursor-pointer">Updated:</div>
+      <div class="cursor-pointer">
         {{ this.Date }}
       </div>
     </div>
@@ -15,11 +16,13 @@
 import CountrySelector from "./CountrySelector.vue";
 import DataBoxes from "./DataBoxes.vue";
 
+
 export default {
   name: "CovidBody",
   components: {
     CountrySelector,
     DataBoxes,
+    
   },
   data() {
     return {
