@@ -17,7 +17,7 @@
         </div> -->
       </div>
       <div class="flex justify-center align-middle">
-        <DataChart :data="newdata" />
+        <DataChart :confirmedCases="totalConfirmed" :deathCases="totalDeaths" />
       </div>
     </div>
 
@@ -35,7 +35,7 @@
         </div> -->
       </div>
       <div class="flex justify-center align-middle">
-        <DataChart :data="newdata" />
+        <DataChart :confirmedCases="newConfirmed" :deathCases="newDeaths" />
       </div>
     </div>
   </div>
@@ -53,14 +53,18 @@ export default {
   data() {
     return {
       showDiv: false,
-      newdata: "",
+      totalConfirmed: "",
+      totalDeaths: "",
     };
   },
   watch: {
     data: {
       handler(newVal, oldVal) {
         if (newVal != oldVal) {
-          this.newdata = newVal;
+          this.totalConfirmed = newVal.TotalConfirmed;
+          this.totalDeaths = newVal.TotalDeaths;
+          this.newConfirmed = newVal.NewConfirmed;
+          this.newDeaths = newVal.NewDeaths;
         }
       },
       deep: true,

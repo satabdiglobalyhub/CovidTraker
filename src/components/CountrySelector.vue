@@ -62,7 +62,6 @@ export default {
   async created() {
     const data = await this.fetchCovidData();
     // console.log(data);
-
     const Updateddate = data.Date;
     this.$emit("updatedDate", Updateddate);
     this.stats = data.Global;

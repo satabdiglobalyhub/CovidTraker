@@ -8,7 +8,7 @@
 import Chart from "chart.js/auto";
 
 export default {
-  props: ["data"],
+  props: ["data", "confirmedCases", "deathCases"],
   data() {
     return {
       confirmed: "",
@@ -18,7 +18,7 @@ export default {
 
   computed: {
     chartData() {
-      return [this.confirmed, this.death];
+      return [this.confirmedCases, this.deathCases];
     },
   },
 
@@ -31,8 +31,8 @@ export default {
     },
 
     async updated() {
-      this.confirmed = await this.data.TotalConfirmed;
-      this.death = await this.data.TotalDeaths;
+      this.confirmed = await this.confirmedCases;
+      this.death = await this.deathCases;
 
       this.destroyChart();
 
@@ -64,7 +64,7 @@ export default {
   },
 
   watch: {
-    data: {
+    confirmedCases: {
       handler(newVal, oldVal) {
         if (newVal !== oldVal) {
           this.updated();
