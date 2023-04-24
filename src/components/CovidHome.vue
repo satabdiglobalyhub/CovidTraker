@@ -1,5 +1,6 @@
 <template>
   <body class="font-mono">
+    a
     <CovidHeader />
     <CovidBody />
 
