@@ -1,9 +1,7 @@
 <template>
   <body class="font-mono">
-    a
     <CovidHeader />
     <CovidBody />
-
   </body>
 </template>
 
@@ -15,7 +13,6 @@ export default {
   components: {
     CovidHeader,
     CovidBody,
-   
   },
 };
 </script>
