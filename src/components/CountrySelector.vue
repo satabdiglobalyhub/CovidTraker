@@ -39,21 +39,19 @@ export default {
   },
   methods: {
     async fetchCovidData() {
-      const res = await fetch("https://api.covid19api.com/summary");
-      const data = await res.json();
+      const fetchedData = await fetch("https://api.covid19api.com/summary");
+      const data = await fetchedData.json();
       return data;
     },
-    fetchCountry(event) {
+    fetchCountry() {
       const selectedCountryID = this.selected;
       if (selectedCountryID === "0") {
         this.title = "Global";
-
         this.$emit("country", this.stats);
       } else {
         const selectedCountry = this.countries.find(
           (country) => country.ID === selectedCountryID
         );
-        // this.title = selectedCountry.Country;
         this.title = "";
         this.$emit("country", selectedCountry);
       }
@@ -61,11 +59,10 @@ export default {
   },
   async created() {
     const data = await this.fetchCovidData();
-    // console.log(data);
-    const Updateddate = data.Date;
-    this.$emit("updatedDate", Updateddate);
+    const updatedDate = data.Date;
+    this.$emit("updatedDate", updatedDate);
     this.stats = data.Global;
-    this.$emit("country", this.stats);
+    this.$emit("countryStats", this.stats);
     this.countries = data.Countries;
     this.loading = false;
   },
