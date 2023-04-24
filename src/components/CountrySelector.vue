@@ -43,7 +43,7 @@ export default {
       const data = await res.json();
       return data;
     },
-    fetchCountry(event) {
+    fetchCountry() {
       const selectedCountryID = this.selected;
       if (selectedCountryID === "0") {
         this.title = "Global";
@@ -53,7 +53,6 @@ export default {
         const selectedCountry = this.countries.find(
           (country) => country.ID === selectedCountryID
         );
-        // this.title = selectedCountry.Country;
         this.title = "";
         this.$emit("country", selectedCountry);
       }
@@ -61,9 +60,8 @@ export default {
   },
   async created() {
     const data = await this.fetchCovidData();
-    // console.log(data);
-    const Updateddate = data.Date;
-    this.$emit("updatedDate", Updateddate);
+    const updatedDate = data.Date;
+    this.$emit("updatedDate", updatedDate);
     this.stats = data.Global;
     this.$emit("country", this.stats);
     this.countries = data.Countries;

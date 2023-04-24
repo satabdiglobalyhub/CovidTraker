@@ -1,12 +1,12 @@
 <template>
   <div class="bg-[#ffebcd] h-full md:h-full">
     <CountrySelector @updatedDate="newDate" @country="countryData" />
-    <DataBoxes :data="Data" />
+    <DataBoxes :data="data" />
 
     <div class="flex flex-col items-center m-10 text-xl md:text-3xl gap-4">
       <div class="cursor-pointer">Updated:</div>
       <div class="cursor-pointer pb-10">
-        {{ this.Date }}
+        {{ this.date }}
       </div>
     </div>
   </div>
@@ -17,15 +17,14 @@ import CountrySelector from "./CountrySelector.vue";
 import DataBoxes from "./DataBoxes.vue";
 
 export default {
-
   components: {
     CountrySelector,
     DataBoxes,
   },
   data() {
     return {
-      Date: "",
-      Data: "",
+      date: "",
+      data: "",
     };
   },
   methods: {
@@ -37,10 +36,10 @@ export default {
         day: "2-digit",
         hour: "2-digit",
       });
-      this.Date = updatedDate;
+      this.date = updatedDate;
     },
     countryData(data) {
-      this.Data = data;
+      this.data = data;
     },
   },
 };

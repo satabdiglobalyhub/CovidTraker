@@ -30,7 +30,7 @@ export default {
       }
     },
 
-    async updated() {
+    async updatedChart() {
       this.confirmed = await this.confirmedCases;
       this.death = await this.deathCases;
 
@@ -67,7 +67,7 @@ export default {
     confirmedCases: {
       handler(newVal, oldVal) {
         if (newVal !== oldVal) {
-          this.updated();
+          this.updatedChart();
         }
       },
       deep: true,
@@ -75,7 +75,7 @@ export default {
   },
 
   mounted() {
-    this.updated();
+    this.updatedChart();
   },
 };
 </script>
